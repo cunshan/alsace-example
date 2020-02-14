@@ -1,0 +1,26 @@
+shiro-redis:
+  enabled: true
+  redis-manager:
+    deploy-mode: standalone
+    host:
+    password:
+#  session-dao:
+#    key-prefix: shiro:session:
+#    cache-manager:
+#      principal-id-field-name: loginAccount
+#      key-prefix: shiro:cache:
+
+
+shiro:
+  jwt: true
+  enabled: true
+  web:
+    enabled: true
+  annotations:
+    enabled: true
+  unauthorizedUrl: /401
+  loginUrl: /login
+  successUrl: /success
+
+
+
