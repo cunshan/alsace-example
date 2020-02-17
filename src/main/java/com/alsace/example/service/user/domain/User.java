@@ -22,11 +22,4 @@ public class User extends BasePageParam {
   private String userName;
   private String password;
 
-  @Override
-  public String toString() {
-    return "User{" +
-        "userName='" + userName + '\'' +
-        ", password='" + password + '\'' +
-        '}';
-  }
 }
