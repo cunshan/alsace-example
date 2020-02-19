@@ -1,9 +1,9 @@
 package com.alsace.example.service.user.domain;
 
 import com.alsace.framework.common.basic.BasePageParam;
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.DynamicInsert;
@@ -19,7 +19,10 @@ public class User extends BasePageParam {
 
   private static final long serialVersionUID = 2752628782288751122L;
 
+  @NotNull
   private String userName;
+
+  @NotNull
   private String password;
 
 }

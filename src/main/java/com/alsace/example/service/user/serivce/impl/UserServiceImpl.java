@@ -2,6 +2,7 @@ package com.alsace.example.service.user.serivce.impl;
 
 import com.alsace.example.service.user.domain.User;
 import com.alsace.example.service.user.mapper.UserMapper;
+import com.alsace.framework.annotation.AutoFill;
 import com.alsace.framework.annotation.LogModify;
 import com.alsace.framework.annotation.PageQuery;
 import com.alsace.example.service.user.repository.UserRepository;
@@ -25,23 +26,25 @@ public class UserServiceImpl implements UserService {
   @Override
   @PageQuery
   public Page<User> queryPage(User param) {
-    return userMapper.queryPage(param);
+    Page<User> page = userMapper.queryPage(param);
+    return page;
   }
 
   @Override
   @LogModify(operationType = "")
-  public User create(User domain) {
+  @AutoFill
+  public User save(User domain) {
     return userRepository.save(domain);
   }
 
   @Override
-  public List<User> createBatch(List<User> list) {
+  public List<User> saveBatch(List<User> list) {
     return (List<User>) userRepository.saveAll(list);
   }
 
   @Override
-  public User update(User domain) {
-    return userRepository.save(domain);
+  public User update(User user) {
+    return userRepository.save(user);
   }
 
   @Override
@@ -50,7 +53,7 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public User getById(Long id) {
+  public User findById(Long id) {
     return userRepository.findById(id).orElse(null);
   }
 

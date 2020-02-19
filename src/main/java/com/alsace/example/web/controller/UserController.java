@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -25,7 +26,8 @@ public class UserController extends BaseController {
   @RequestMapping("/save")
   @ResponseBody
   public AlsaceResponse save(User user) {
-    User res = userService.create(user);
+    user.setPassword(PasswordUtils.md5(user.getPassword()));
+    User res = userService.save(user);
     return new AlsaceResponse.Builder(true).msg("创建成功").data(res).build();
   }
 
@@ -48,5 +50,11 @@ public class UserController extends BaseController {
   }
 
 
+  @RequestMapping("/{idStr}")
+  @ResponseBody
+  public AlsaceResponse findById(@PathVariable String idStr) {
+    User res = userService.findById(Long.parseLong(idStr));
+    return new AlsaceResponse.Builder(true).data(res).build();
+  }
 
 }

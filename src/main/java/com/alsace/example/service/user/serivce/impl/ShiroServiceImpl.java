@@ -24,7 +24,7 @@ public class ShiroServiceImpl implements ShiroService {
   @Override
   public Map<String, String> getPathDefinitionsMap() {
     Map<String, String> map = new HashMap<>();
-    map.put("/**","jwt");
+    map.put("/**","jwt[POST,GET]");
     map.put("/user/login","anon");
     return map;
   }
